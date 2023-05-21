@@ -1,0 +1,71 @@
+{% extends "bootstrap/base.html" %}
+
+{% block navbar %}
+
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ url_for('home.home') }}">Webhooks</a>
+        <form class="d-flex" role="search" method="POST" action="{{ url_for('home.home') }}">
+            <input class="form-control me-2" type="email" name="email" id="email" placeholder="Email:" aria-label="Email" required><br>
+            <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+        </form>
+    </div>
+</nav>
+
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Parcelas</th>
+            <th scope="col">Metodo de Pagamento</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for webhook in webhooks %}
+            <tr>
+                <td>{{ webhook['id'] }}</td>
+                <td>{{ webhook['nome'] }}</td>
+                <td>{{ webhook['email'] }}</td>
+                <td>{{ webhook['status'] }}</td>
+                <td>{{ webhook['valor'] }}</td>
+                <td>{{ webhook['parcelas'] }}</td>
+                <td>{{ webhook['forma_pagamento'] }}</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                  <table class="table mb-0">
+                    <thead>
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Ação</th>
+                                <th scope="col">Momento da Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for action in webhook['actions'] %}
+                                <tr>
+                                    <td>{{ action['id'] }}</td>
+                                    <td>{{ action['action'] }}</td>
+                                    <td>{{ action['action_time'] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                  </table>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  
+
+
+{% endblock %}

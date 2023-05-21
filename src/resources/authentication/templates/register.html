@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulário de Cadastro</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('authentication.static', filename='style.css') }}">
+    </head>
+<body>
+    {% if success_message %}
+        <p>{{ success_message }}</p>
+    {% endif %}
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+    <div class="container">
+        <h2>Formulário de Cadastro</h2>
+        <form method="post" action="/auth/register">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+
+            <label for="confirmacao_de_senha">Confirme a senha:</label>
+            <input type="password" id="confirmacao_de_senha" name="confirmacao_de_senha" required>
+
+            <label for="token">Token:</label>
+            <input type="text" id="token" name="token" required>
+
+            <input type="submit" value="Cadastrar">
+        </form>
+    </div>
+</body>
+</html>
