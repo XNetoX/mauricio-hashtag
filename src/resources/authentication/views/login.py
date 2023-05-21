@@ -1,10 +1,11 @@
-from flask import redirect, render_template, request, session
+from flask import redirect, render_template, request, session, url_for
 
 from src.resources.authentication.services import user_service
 
 
 def login():
     if request.method == "POST":
+
         email = request.form["email"]
         password = request.form["password"]
 
@@ -15,7 +16,7 @@ def login():
 
         if user_service.check_user_credentials(email, password):
             session["email"] = email
-            return redirect("/")
+            return redirect(url_for("home.home"))
         else:
             return render_template(
                 "login.html", error_message="Credenciais inválidas. Tente novamente."

@@ -1,4 +1,4 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect, url_for
 
 from config import REGISTER_TOKEN
 from src.resources.authentication.services import user_service
@@ -21,8 +21,6 @@ def register():
 
         user_service.create_user(email, password)
         session["email"] = email
-        return render_template(
-            "register.html", success_message="Usuário cadastrado com sucesso!"
-        )
+        return redirect(url_for("home.home"))
 
     return render_template("register.html")

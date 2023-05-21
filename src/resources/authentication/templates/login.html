@@ -9,7 +9,7 @@
         {% if error_message %}
             <p>{{ error_message }}</p>
         {% endif %}
-        <form method="POST" action="/auth/login">
+        <form method="POST" action="{{ url_for('authentication.login') }}">
             <label for="email">Email:</label>
             <input type="email" name="email" id="email" required><br>
             <label for="password">Password:</label>
@@ -17,6 +17,7 @@
             <input type="submit" value="Login">
         </form>
     </div>
+    <a class="btn btn-secondary" role="button" href="{{ url_for('authentication.register') }}">Registrar-se</a>
 </body>
 </html>
 
