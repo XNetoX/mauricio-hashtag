@@ -1,35 +1,55 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Formulário de Cadastro</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('authentication.static', filename='style.css') }}">
-    </head>
-<body>
-    {% if success_message %}
-        <p>{{ success_message }}</p>
-    {% endif %}
+{% extends "bootstrap/base.html" %}
+{% block content %}
 
-    {% if error_message %}
-        <p>{{ error_message }}</p>
-    {% endif %}
 
-    <div class="container">
-        <h2>Formulário de Cadastro</h2>
-        <form method="post" action="{{ url_for('authentication.register') }}">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
 
-            <label for="confirmacao_de_senha">Confirme a senha:</label>
-            <input type="password" id="confirmacao_de_senha" name="confirmacao_de_senha" required>
+<div class="col-md-4 col-md-offset-4">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
 
-            <label for="token">Token:</label>
-            <input type="text" id="token" name="token" required>
+            <h1 class="display-4">Registre-se</h1>
 
-            <input type="submit" value="Cadastrar">
-        </form>
+            {% if success_message %}
+            <div class="alert alert-success" role="alert">
+                {{ success_message }}
+              </div>
+            {% endif %}
+            
+            
+              
+            {% if error_message %}
+            <div class="alert alert-danger" role="alert">
+                {{ error_message }}
+              </div>
+            {% endif %}
+
+
+<form class="d-flex" method="POST" action="{{ url_for('authentication.register') }}">
+    <div class="mb-3">
+    <label for="email">Email</label>
+    <input class="form-control" type="email" id="email" name="email" required>
     </div>
-</body>
-</html>
+    <div class="mb-3">
+      <label for="password" class="form-label">Senha</label>
+      <input class="form-control" type="password" id="password" name="password" required>
+    </div>
+    <div class="mb-3">
+        <label for="password_confirmation" class="form-label">Confirme sua senha</label>
+        <input class="form-control" type="password" id="password_confirmation" name="password_confirmation" required>
+    </div>
+    <div class="mb-3">
+        <label for="token" class="form-label">Token</label>
+        <input class="form-control" type="text" id="token" name="token" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrar-se</button>
+  </form>
+
+
+</div>
+</div>
+</div>
+
+
+  {% endblock %}

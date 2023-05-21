@@ -7,8 +7,8 @@ from src.resources.authentication.services import user_service
 def register():
     if request.method == "POST":
         email = request.form["email"]
-        password = request.form["senha"]
-        password_confirmation = request.form["confirmacao_de_senha"]
+        password = request.form["password"]
+        password_confirmation = request.form["password_confirmation"]
         token = request.form["token"]
 
         if token != REGISTER_TOKEN:
